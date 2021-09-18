@@ -29,8 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="罗先生的小前端" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="罗先生的小前端" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -388,11 +388,12 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>vuex是一个很好用的状态管理模式，但是当我们先将数据保存到store中，然后重新刷新页面会发现store中的数据被重置了，这是因为store中的数据存储在内存之中。</p>
-<h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5><p>  既然内存中数据刷新会丢失，那么就可以在刷新的时候将数据保存到本地缓存，下次加载store中的数据时先去缓存中获取，没有缓存再加载默认初始值</p>
-<h2 id="1-方法1："><a href="#1-方法1：" class="headerlink" title="1.方法1："></a>1.方法1：</h2><h3 id="1-1刷新时缓存？？？"><a href="#1-1刷新时缓存？？？" class="headerlink" title="1.1刷新时缓存？？？"></a>1.1刷新时缓存？？？</h3><p>我们想要在刷新的时候进行缓存数据操作，我们就需要使用windows的unload事件，我们来看看这个unload事件：</p>
+                <ul>
+<li>vuex是一个很好用的状态管理模式，但是当我们先将数据保存到store中，然后重新刷新页面会发现store中的数据被重置了，这是因为store中的数据存储在内存之中。<h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5></li>
+<li>既然内存中数据刷新会丢失，那么就可以在刷新的时候将数据保存到本地缓存，下次加载store中的数据时先去缓存中获取，没有缓存再加载默认初始值</li>
+</ul>
+<h2 id="1-方法1："><a href="#1-方法1：" class="headerlink" title="1.方法1："></a>1.方法1：</h2><h3 id="1-1刷新时缓存？？？"><a href="#1-1刷新时缓存？？？" class="headerlink" title="1.1刷新时缓存？？？"></a>1.1刷新时缓存？？？</h3><p>我们想要在刷新的时候进行缓存数据操作，我们就需要使用windows的unload事件，我们来看看这个unload事件：<br><img src="/img/vuex/vuex-code2.png"></p>
 <pre class=" language-bash"><code class="language-bash">
-code snippet
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
@@ -430,7 +431,7 @@ code snippet
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://pp512.github.io/2021/09/17/hello-world/">https://pp512.github.io/2021/09/17/hello-world/</a>
+                    <a href="https://pp512.github.io/2021/09/17/VUE----%E8%A7%A3%E5%86%B3%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0Vuex%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B8%85%E7%A9%BA/">https://pp512.github.io/2021/09/17/VUE----%E8%A7%A3%E5%86%B3%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0Vuex%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B8%85%E7%A9%BA/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -648,7 +649,7 @@ code snippet
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/09/17/hello-world/">
+                <a href="/2021/09/17/VUE----%E8%A7%A3%E5%86%B3%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0Vuex%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B8%85%E7%A9%BA/">
                     <div class="card-image">
                         
                         <img src="/img/vuex/vuex.png" class="responsive-img" alt="VUE----解决页面刷新Vuex中的数据清空">
@@ -701,7 +702,7 @@ code snippet
                 本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/17/hello-world/">
+                <a href="/2021/09/17/VUE----%E8%A7%A3%E5%86%B3%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0Vuex%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B8%85%E7%A9%BA/">
                     <div class="card-image">
                         
                         <img src="/img/vuex/vuex.png" class="responsive-img" alt="VUE----解决页面刷新Vuex中的数据清空">
