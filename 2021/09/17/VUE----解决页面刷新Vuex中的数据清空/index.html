@@ -392,8 +392,21 @@
 <li>vuex是一个很好用的状态管理模式，但是当我们先将数据保存到store中，然后重新刷新页面会发现store中的数据被重置了，这是因为store中的数据存储在内存之中。<h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5></li>
 <li>既然内存中数据刷新会丢失，那么就可以在刷新的时候将数据保存到本地缓存，下次加载store中的数据时先去缓存中获取，没有缓存再加载默认初始值</li>
 </ul>
-<h2 id="1-方法1："><a href="#1-方法1：" class="headerlink" title="1.方法1："></a>1.方法1：</h2><h3 id="1-1刷新时缓存？？？"><a href="#1-1刷新时缓存？？？" class="headerlink" title="1.1刷新时缓存？？？"></a>1.1刷新时缓存？？？</h3><p>我们想要在刷新的时候进行缓存数据操作，我们就需要使用windows的unload事件，我们来看看这个unload事件：<br><img src="/img/vuex/vuex-code2.png"></p>
-<pre class=" language-bash"><code class="language-bash">
+<h2 id="1-方法1："><a href="#1-方法1：" class="headerlink" title="1.方法1："></a>1.方法1：</h2><h3 id="1-1刷新时缓存？？？"><a href="#1-1刷新时缓存？？？" class="headerlink" title="1.1刷新时缓存？？？"></a>1.1刷新时缓存？？？</h3><p>我们想要在刷新的时候进行缓存数据操作，我们就需要使用windows的unload事件，我们来看看这个unload事件：<br><img src="/img/vuex/vuex-code2.png"><br>我们刷新页面的时候就可以触发这个unload事件，GOOD！！！</p>
+<h3 id="1-2何时添加监听事件？？？"><a href="#1-2何时添加监听事件？？？" class="headerlink" title="1.2何时添加监听事件？？？"></a>1.2何时添加监听事件？？？</h3><ul>
+<li>我们知道整个vue的生命周期首先在main.js中挂载一堆东西，然后挂载一个app组件，我们很想趁早添加这个unload的事件监听，但是为了保证main.js的简洁性，我们选择将这个监听放在app组件的created钩子函数中</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">//示例代码<span class="token punctuation">..</span>
+   methods:<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+      //将store中的数据存放到sessionStorage
+        saveState<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+          sessionStorage.setItem<span class="token punctuation">(</span><span class="token string">"state"</span>, JSON.stringify<span class="token punctuation">(</span>this.<span class="token variable">$store</span>.state<span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;,</span>
+    created<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+      //向window添加unload事件
+        window.addEventListener<span class="token punctuation">(</span><span class="token string">"unload"</span>, this.saveState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
