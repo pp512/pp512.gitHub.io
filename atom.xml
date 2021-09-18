@@ -6,7 +6,7 @@
   <link href="https://pp512.github.io/atom.xml" rel="self"/>
   
   <link href="https://pp512.github.io/"/>
-  <updated>2021-09-17T07:16:37.581Z</updated>
+  <updated>2021-09-18T03:26:32.531Z</updated>
   <id>https://pp512.github.io/</id>
   
   <author>
@@ -17,23 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
+    <title>VUE----解决页面刷新Vuex中的数据清空</title>
     <link href="https://pp512.github.io/2021/09/17/hello-world/"/>
     <id>https://pp512.github.io/2021/09/17/hello-world/</id>
     <published>2021-09-17T07:16:37.581Z</published>
-    <updated>2021-09-17T07:16:37.581Z</updated>
+    <updated>2021-09-18T03:26:32.531Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+    <summary type="html">&lt;p&gt;vuex是一个很好用的状态管理模式，但是当我们先将数据保存到store中，然后重新刷新页面会发现store中的数据被重置了，这是因为store中的数据存储在内存之中。&lt;/p&gt;
+&lt;h5 id=&quot;解决办法：&quot;&gt;&lt;a href=&quot;#解决办法：&quot;</summary>
         
       
     
     
     
+    <category term="vuex" scheme="https://pp512.github.io/categories/vuex/"/>
+    
+    
+    <category term="vue" scheme="https://pp512.github.io/tags/vue/"/>
+    
+    <category term="vuex" scheme="https://pp512.github.io/tags/vuex/"/>
     
   </entry>
   
