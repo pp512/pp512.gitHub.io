@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="罗先生的小前端" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -396,28 +396,48 @@
 <h3 id="1-2何时添加监听事件？？？"><a href="#1-2何时添加监听事件？？？" class="headerlink" title="1.2何时添加监听事件？？？"></a>1.2何时添加监听事件？？？</h3><ul>
 <li>我们知道整个vue的生命周期首先在main.js中挂载一堆东西，然后挂载一个app组件，我们很想趁早添加这个unload的事件监听，但是为了保证main.js的简洁性，我们选择将这个监听放在app组件的created钩子函数中</li>
 </ul>
-<pre class=" language-bash"><code class="language-bash">//示例代码<span class="token punctuation">..</span>
-   methods:<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+<pre><code class="javascript">//示例代码..
+   methods:&#123;
       //将store中的数据存放到sessionStorage
-        saveState<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
-          sessionStorage.setItem<span class="token punctuation">(</span><span class="token string">"state"</span>, JSON.stringify<span class="token punctuation">(</span>this.<span class="token variable">$store</span>.state<span class="token punctuation">))</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
-    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;,</span>
-    created<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+        saveState() &#123;
+          sessionStorage.setItem(&quot;state&quot;, JSON.stringify(this.$store.state));
+        &#125;
+    &#125;,
+    created() &#123;
       //向window添加unload事件
-        window.addEventListener<span class="token punctuation">(</span><span class="token string">"unload"</span>, this.saveState<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+        window.addEventListener(&quot;unload&quot;, this.saveState);
+    &#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
+<h3 id="1-3sessionStorage"><a href="#1-3sessionStorage" class="headerlink" title="1.3sessionStorage???"></a>1.3sessionStorage???</h3><p><img src="/img/vuex/vuex-code1.png"></p>
+<h3 id="1-4修改state数据加载"><a href="#1-4修改state数据加载" class="headerlink" title="1.4修改state数据加载"></a>1.4修改state数据加载</h3><ul>
+<li>之前我们一直是每次加载store直接去获取默认值，现在我们需要先去看看缓存中是否有数据<pre><code class="javascript">//示例代码：
+const state = sessionStorage.getItem(&#39;state&#39;) ? JSON.parse(sessionStorage.getItem(&#39;state&#39;))：&#123;默认值&#125;
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
+</li>
+<li>1.5现在我们就可以在刷新页面的时候一直能保持store中的数据了  </li>
+</ul>
+<h2 id="2-方法2："><a href="#2-方法2：" class="headerlink" title="2.方法2："></a>2.方法2：</h2><h3 id="2-1下载插件："><a href="#2-1下载插件：" class="headerlink" title="2.1下载插件："></a>2.1下载插件：</h3><pre><code class="javascript">npm install --save vuex-persistedstate
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
+<h3 id="2-使用示例代码："><a href="#2-使用示例代码：" class="headerlink" title="2.使用示例代码："></a>2.使用示例代码：</h3><pre><code class="javascript">import Vue from &#39;vue&#39;
+import Vuex from &#39;vuex&#39;
+import persistedState from &#39;vuex-persistedstate&#39;
+
+import state from &#39;./state.js&#39;
+import mutations from &#39;./mutations.js&#39;
+import getters from &#39;./getters.js&#39;
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store(&#123;
+    plugins: [
+      persistedState(&#123; storage: window.sessionStorage &#125;)
+    ],
+    state:state,
+    mutations:mutations,
+    getters:getters
+&#125;)
+export default store
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
                 
             </div>
